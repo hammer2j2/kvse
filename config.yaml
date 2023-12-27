@@ -1,0 +1,101 @@
+myproj:
+  envs:
+    - name: dev
+      region: us-west-2
+      account: 1234
+    - name: test
+      region: us-east-1
+      account: 2345
+
+# myproj:
+#   envs:
+#     - name: dev
+#       regions:
+#         - name: us-west-2
+#           vpcid: vpc-1234
+#           active: true
+#         - name: us-east-1
+#           vpcid:
+#           active: false
+#       account: 1234
+#     - name: test
+#       region: us-east-1
+#       account: 2345
+
+myproj:
+  "yish": # https://github.com/kubernetes-sigs/yaml/issues/98
+    z1:
+      vanilla: yummy
+      chocolate: sweet
+    z2: true
+  x:
+    z1:
+      vanilla: yummy
+      chocolate: sweet
+    z2: true
+  acls:
+    grafana:
+        scope: 
+        - name: non-prod
+          access:
+          - name: admin
+            sdb: /app/myproj-dev/grafana/admin
+            key: key
+            value: value
+          - name: read
+            sdb: /app/myproj-dev/grafana/readonly
+            key: key
+            value: value
+        - name: prod
+          admin:
+            sdb: /app/myproj/grafana/admin
+            key: key
+            value: value
+          readonly:
+            sdb: /app/myproj/grafana/readonly
+            key: name
+            value: secret
+    groups:
+      type:
+      - name: monitoring
+        scope:
+        - name: system-logs
+          env: prod
+          group: App.monitoring.myproj.Eng.HC.Users
+        - name: monitoring-ui
+          env: prod
+          group: Application.monitoring.Eng.Users
+        - name: user-ru 
+          env: prod
+          group: Application.monitoring.Eng.staff.users
+        - name: user-hc
+          env: prod
+          group: Application.monitoring.Eng.managers.users
+      - name: github
+        scope:
+        - name: admin
+          group: Application.myproj.github.Admins
+            
+  r: null
+  envs:
+    - regions:
+        - name: us-west-2
+          shortname: usw2
+          active: true
+        - name: us-east-1
+          shortname: use1
+          active: true
+      one: a
+      two: b
+      name: qa
+    - elm: tree
+      maple: tree
+      name: prod
+      regions:
+        - name: us-west-2
+          shortname: usw2
+          active: true
+        - name: us-east-1
+          shortname: use1
+          active: true
+

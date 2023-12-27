@@ -1,0 +1,29 @@
+myproj:
+  envs:
+    - name: dev
+      regions:
+        - name: us-west-9
+        - name: us-east-1
+      mock-user:
+          account: 12345678901234
+          regions:
+            - name: us-west-2
+              vpcid: vpc-1923912919
+    - name: prod
+      regions: 
+        - name: us-west-2
+        - name: us-east-1
+      mock_users:
+        - name: mock_user 
+          account: 123456789012
+          e2e_store_path: app/myproj/service-accounts/a.myproj.e2etest.prod
+    - name: qa
+      regions:
+        - name: us-west-2
+        - name: us-east-1
+      mock-user:
+          account: 12345678901234
+          regions:
+            - name: us-west-2
+              vpcid: vpc-1923912919
+          e2e_store_path: app/myproj/service-accounts-updated-passwords/a.myproj.e2etest
